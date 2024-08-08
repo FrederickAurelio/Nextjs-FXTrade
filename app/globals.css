@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fafafa;
+  color: #27272a;
+}
+
+
+@keyframes rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+@layer components {
+  .container {
+    @apply rounded-3xl bg-zinc-50 p-5 drop-shadow-2xl
+  }
+
+  .feature-container {
+    @apply cursor-pointer rounded-3xl bg-zinc-50 p-5 drop-shadow-2xl duration-200;
+  }
+
+  .feature-container:hover {
+    @apply scale-105;
+  }
+
+  .testimonial {
+    @apply mb-6 md:mb-4 w-fit rounded-full bg-zinc-100 px-6 py-3 text-xs drop-shadow-md md:px-10 md:py-5 md:text-base
+  }
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a1a1aa;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+.spinner {
+  width: 8rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #6ee7b7 94%, #0000) top/12px 12px no-repeat,
+    conic-gradient(#0000 30%, #6ee7b7);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 12px), #000 0);
+  animation: rotate 1s infinite linear;
+}
+
+.mini-spinner {
+  width: 1.2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #047857 75%, #0000) top/4px 4px no-repeat,
+    conic-gradient(#0000 60%, #047857);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  animation: rotate 1s infinite linear;
+}
