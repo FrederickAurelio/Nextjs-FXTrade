@@ -3,6 +3,7 @@ import { ScreenSize } from "./_components/ScreenContext";
 import { Toaster } from "react-hot-toast";
 import Animation from "./_components/Animation";
 
+
 export const metadata = {
   title: "FXTrade",
   description: "Forex Trade Demo App, where users can learn to trade foreign exchange currency in real-time. This web application allows users to sign up, log in, and receive ¥100,000 fake money to practice trading. Also works on mobile and desktop or any devices. Build using Nextjs",

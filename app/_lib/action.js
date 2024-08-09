@@ -90,7 +90,7 @@ export async function SignInWithGitHub() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_AUTH_CALLBACK}/github`
+      redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback/github`
     },
   })
 
@@ -106,7 +106,7 @@ export async function ResetPassowrd(formData) {
 
   const supabase = createClient();
   await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: process.env.NEXT_PUBLIC_AUTH_CALLBACK
+    redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`
   })
 
   // show success text in client
@@ -126,4 +126,14 @@ export async function ChangePassword(formData) {
     throw new Error(error.message)
 
   redirect("/app");
+}
+
+export async function SignOutAcount() {
+  console.log("testt")
+  const supabase = createClient();
+  const { error } = await supabase.auth.signOut()
+  if (error)
+    toast.error(error.message)
+
+  redirect("/login")
 }

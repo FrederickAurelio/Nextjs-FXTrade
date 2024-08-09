@@ -5,6 +5,7 @@ const ScreenContext = createContext();
 
 function ScreenSize({ children }) {
   const [screenSize, setScreenSize] = useState(window?.innerWidth);
+  const [activeTab, setActiveTab] = useState("chart");
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,7 +18,7 @@ function ScreenSize({ children }) {
   }, []);
 
   return (
-    <ScreenContext.Provider value={{ screenSize }}>
+    <ScreenContext.Provider value={{ screenSize, activeTab, setActiveTab }}>
       {children}
     </ScreenContext.Provider>
   );
