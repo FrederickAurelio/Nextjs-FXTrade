@@ -9,7 +9,7 @@ function ScreenSize({ children }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setScreenSize(window?.innerWidth);
+      setScreenSize(window?.innerWidth || 0);
     };
     window.addEventListener("resize", handleResize);
     return () => {

@@ -1,21 +1,28 @@
 "use client"
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { formatNumber, formatCurrency } from "../_lib/helpers";
 import { useScreenSize } from "/app/_components/ScreenContext";
+import TotalAsset from "./TotalAsset";
+import Spinner from "../_components/Spinner";
+import useLatestCurrency from "../_lib/useLatestCurrency";
 
 function Table({ transactions = [] }) {
-  // fetch latest cur (react query)
+  const { isPending, latestCur } = useLatestCurrency();
   const { setActiveTab } = useScreenSize();
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
 
-  function handleParams(asset) {
+  function handleClick(asset) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("cur", asset);
+    if (!searchParams.get("time"))
+      params.set("time", "1m");
+    window.history.pushState(null, "", `?${params.toString()}`);
     setActiveTab("chart");
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
+
+  if (isPending) return <Spinner />
+  if (latestCur === undefined)
+    return <p className="p-2 text-lg font-semibold">Offline..</p>;
 
   return (
     <div className="flex w-full flex-col divide-y divide-zinc-200 overflow-x-auto xl:items-center xl:overflow-x-hidden">
@@ -29,7 +36,7 @@ function Table({ transactions = [] }) {
       </div>
       {transactions.map((cell, i) => (
         <div
-          onClick={() => handleParams(cell.asset)}
+          onClick={() => handleClick(cell.asset)}
           key={i}
           className="grid w-[42rem] cursor-pointer grid-cols-6 text-start hover:bg-zinc-100"
         >
@@ -37,7 +44,7 @@ function Table({ transactions = [] }) {
           <p className="py-1">{formatNumber(cell.quantity)}</p>
           <p className="py-1">{formatNumber(cell.avgBuyPrice.toFixed(5))}</p>
           <p className="py-1">
-            {formatNumber(latestCur.rates[cell.asset].toFixed(5))}
+            {formatNumber(latestCur?.rates[cell.asset].toFixed(5))}
           </p>
           <p className="py-1">
             {formatCurrency(cell.quantity / latestCur.rates[cell.asset], "CNY")}

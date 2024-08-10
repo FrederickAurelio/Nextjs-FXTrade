@@ -2,6 +2,7 @@ import "./globals.css";
 import { ScreenSize } from "./_components/ScreenContext";
 import { Toaster } from "react-hot-toast";
 import Animation from "./_components/Animation";
+import ReactQueryProvider from "./_lib/ReactQueryProvider";
 
 
 export const metadata = {
@@ -13,11 +14,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Animation>
-          <ScreenSize>
-            {children}
-          </ScreenSize>
-        </Animation>
+        <ReactQueryProvider>
+          <Animation>
+            <ScreenSize>
+              {children}
+            </ScreenSize>
+          </Animation>
+        </ReactQueryProvider>
         <Toaster
           position="top-center"
           gutter={12}
