@@ -1,30 +1,27 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { formatCurrency, formatNumber } from "../_lib/helpers";
-// import useUpdateTransaction from "./useUpdateTransaction";
-// import useDeleteTransaction from "./useDeleteTransaction";
+import { SellTransactions } from "/app/_lib/action"
+import MiniSpinner from "/app/_components/MiniSpinner"
+import toast from "react-hot-toast";
 
 function Sell({ cur, latestCur, balance, transactions, onCloseModal }) {
   const transaction = transactions.find((t) => t.asset === cur);
   const [sellQuantity, setSellQuantity] = useState(0);
   const currentPrice = latestCur.rates[cur];
   const sellPrice = Number(sellQuantity) / currentPrice;
-
-  const { isUpdating, update } = useUpdateTransaction(onCloseModal);
-  const { isDeleting, deletes } = useDeleteTransaction(onCloseModal);
+  const [isPending, startTransition] = useTransition()
 
   function handleSell() {
-    if (transaction.quantity > Number(sellQuantity)) {
-      update({
-        asset: transaction.asset,
-        avgBuyPrice: transaction.avgBuyPrice,
-        quantity: transaction.quantity - Number(sellQuantity),
-        balance: Number(balance) + Number(sellPrice),
-      });
-    } else if (transaction.quantity === Number(sellQuantity)) {
-      deletes({ balance: Number(balance) + Number(sellPrice), asset: cur });
-    }
+    if (sellQuantity === 0) return;
+    startTransition(async () => {
+      const res = await SellTransactions(transaction.asset, sellQuantity);
+      onCloseModal();
+      if (res.type === "success")
+        toast.success("Transaction Successful! Thank You!")
+      else toast.error(res.message)
+    });
   }
 
   return (
@@ -42,7 +39,7 @@ function Sell({ cur, latestCur, balance, transactions, onCloseModal }) {
         <p>Sell Quantity:</p>
         <div className="flex">
           <input
-            disabled={isUpdating || isDeleting}
+            disabled={isPending}
             value={sellQuantity}
             onChange={(e) => {
               const value = e.target.value;
@@ -61,11 +58,11 @@ function Sell({ cur, latestCur, balance, transactions, onCloseModal }) {
         <p>Sell Price:</p>
         <p>{formatCurrency(sellPrice, "CNY")}</p>
         <button
-          disabled={isUpdating || isDeleting}
+          disabled={isPending}
           onClick={handleSell}
-          className={`${isUpdating || isDeleting ? "cursor-not-allowed bg-zinc-300" : "cursor-pointer bg-rose-700"} col-span-2 mt-6 rounded-lg px-6 py-1 font-semibold text-white`}
+          className={`flex justify-center items-center disabled:cursor-not-allowed disabled:bg-zinc-300 cursor-pointer bg-rose-700 col-span-2 mt-6 rounded-lg px-6 py-1 font-semibold text-white`}
         >
-          SELL
+          {isPending ? <MiniSpinner /> : ""}SELL
         </button>
       </div>
     </div>

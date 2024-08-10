@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "../../../../utils/supabase/server";
+import { createClient as CreateClientServer } from "@supabase/supabase-js";
 // The client you created from the Server-Side Auth instructions
 
 export async function GET(request: Request) {
@@ -19,27 +20,29 @@ export async function GET(request: Request) {
       const { data: row } = await supabase
         .from("userBalance")
         .select("email")
-        .eq("user_id", user.id)
-        .single();
+        .eq("user_id", user.id);
 
       // If there is no row, Create the new one
-      if (!row) {
+      if (row.length === 0) {
         let username = user.user_metadata.full_name;
 
         // Check if Username already exist
         const { data, error: error2 } = await supabase
           .from("userBalance")
           .select("email")
-          .eq("username", username)
-          .single();
+          .eq("username", username);
 
         // if yes add random # to the username
-        if (data) username = `${username}#${user.id.slice(0, 5)}`;
+        if (data.length !== 0) username = `${username}#${user.id.slice(0, 5)}`;
 
         if (error2) throw new Error(error2.message);
 
         // Creating userBalance row
-        const { error } = await supabase.from("userBalance").insert({
+        const supabaseServer = CreateClientServer(
+          process.env.NEXT_PUBLIC_SUPABASE_URL,
+          process.env.NEXT_PUBLIC_SUPABASE_SECRET_KEY
+        );
+        const { error } = await supabaseServer.from("userBalance").insert({
           username: username,
           balance: 100000,
           user_id: user.id,

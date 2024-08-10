@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react";
-// import useCreateTransaction from "./useCreateTransaction";
-// import useUpdateTransaction from "./useUpdateTransaction";
+import { useState, useTransition } from "react";
 import { formatCurrency, formatNumber } from "../_lib/helpers";
+import { BuyTransactions } from "/app/_lib/action"
+import MiniSpinner from "/app/_components/MiniSpinner"
+import toast from "react-hot-toast";
 
 function Buy({ cur, latestCur, transactions, balance, isOwn, onCloseModal }) {
   const transaction = isOwn
@@ -12,31 +13,17 @@ function Buy({ cur, latestCur, transactions, balance, isOwn, onCloseModal }) {
   const [buyQuantity, setBuyQuantity] = useState(0);
   const currentPrice = latestCur.rates[cur];
   const totalPrice = buyQuantity / currentPrice;
-
-  const { isCreating, create } = useCreateTransaction(onCloseModal);
-  const { isUpdating, update } = useUpdateTransaction(onCloseModal);
+  const [isPending, startTransition] = useTransition()
 
   function handleBuy() {
     if (buyQuantity === 0) return;
-    const newBalance = balance - totalPrice;
-    if (isOwn) {
-      update({
-        asset: cur,
-        avgBuyPrice:
-          (Number(transaction.avgBuyPrice) * Number(transaction.quantity) +
-            Number(currentPrice) * Number(buyQuantity)) /
-          (Number(transaction.quantity) + Number(buyQuantity)),
-        quantity: Number(transaction.quantity) + Number(buyQuantity),
-        balance: Number(newBalance),
-      });
-    } else {
-      create({
-        asset: cur,
-        avgBuyPrice: currentPrice,
-        quantity: buyQuantity,
-        balance: newBalance,
-      });
-    }
+    startTransition(() => {
+      const res = BuyTransactions(transaction.asset, buyQuantity);
+      onCloseModal();
+      if (res.type === "success")
+        toast.success("Transaction Successful! Thank You!")
+      else toast.error(res.message)
+    });
   }
 
   return (
@@ -54,7 +41,7 @@ function Buy({ cur, latestCur, transactions, balance, isOwn, onCloseModal }) {
         <p>Buy Quantity:</p>
         <div className="flex">
           <input
-            disabled={isCreating || isUpdating}
+            disabled={isPending}
             value={buyQuantity}
             onChange={(e) => {
               const value = e.target.value;
@@ -74,11 +61,11 @@ function Buy({ cur, latestCur, transactions, balance, isOwn, onCloseModal }) {
         <p>Total Price:</p>
         <p>{formatCurrency(totalPrice, "CNY")}</p>
         <button
-          disabled={isCreating || isUpdating}
+          disabled={isPending}
           onClick={handleBuy}
-          className={`${isCreating || isUpdating ? "cursor-not-allowed bg-zinc-300" : "cursor-pointer bg-emerald-700"} col-span-2 mt-6 rounded-lg px-6 py-1 font-semibold text-white`}
+          className={`flex justify-center items-center disabled:cursor-not-allowed disabled:bg-zinc-300 cursor-pointer bg-emerald-700 col-span-2 mt-6 rounded-lg px-6 py-1 font-semibold text-white`}
         >
-          BUY
+          {isPending ? <MiniSpinner /> : ""}BUY
         </button>
       </div>
     </div>
