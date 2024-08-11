@@ -21,6 +21,7 @@ function Page({ searchParams }) {
           className="flex flex-col items-center gap-1"
         >
           <input
+            required
             id="password"
             name="password"
             placeholder="Password"
