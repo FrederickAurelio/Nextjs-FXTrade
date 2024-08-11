@@ -50,9 +50,9 @@ export async function GET(request: Request) {
         });
 
         if (error) throw new Error(error.message);
-        const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/app`;
-        return NextResponse.redirect(redirectUrl);
       }
+      const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/app`;
+      return NextResponse.redirect(redirectUrl);
     }
   }
 
