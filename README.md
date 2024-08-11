@@ -5,4 +5,4 @@
 </div>
 
 ## ⚙️Technology
-<a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/next-js.svg" alt="next.js" width="40" height="36"/>
+<a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://branditechture.agency/brand-logos/wp-content/uploads/wpdm-cache/Next.js-900x0.png" width="40" height="36"/>
