@@ -25,7 +25,7 @@ function Table({ transactions = [] }) {
     return <p className="p-2 text-lg font-semibold">Offline..</p>;
 
   return (
-    <div key={[latestCur.rates["USD"]]} className="flex w-full flex-col divide-y divide-zinc-200 overflow-x-auto xl:items-center xl:overflow-x-hidden">
+    <div key={latestCur.date} className="flex w-full flex-col divide-y divide-zinc-200 overflow-x-auto xl:items-center xl:overflow-x-hidden">
       <div className="text grid w-[42rem] grid-cols-6 font-semibold">
         <p>Asset</p>
         <p>Quantity</p>
