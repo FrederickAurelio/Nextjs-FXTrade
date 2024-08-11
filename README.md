@@ -10,6 +10,7 @@
 
 </br>
 </br>
+
 ## 🚀New Features and Enhancements
 <ul>
   <li><strong>Rebuilt with Next.js:</strong> Transitioned from React to Next.js for improved performance, faster load times, and better SEO.</li>
@@ -18,8 +19,10 @@
   <li><strong>Enhance Database with RLS:</strong> Ensures only the server can modify the database, preventing unauthorized transactions.</li>
   <li><strong>Backend:</strong> Migrated from LeanCloud to Supabase for enhanced data management.</li>
 </ul>
+
 </br>
 </br>
+
 ## 👉Old Key Features
 <ul>
   <li><strong>Animated Landing Page:</strong> Landing page are animated using GSAP.</li>
