@@ -8,7 +8,8 @@
 ## ⚙️Technology
 <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/user-attachments/assets/8e8787a8-5d28-454e-a0ed-7f4d7c746a45" width="55" height="40"/><a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/FrederickAurelio/Bookling/assets/121996224/5a77ab5f-bf0e-463e-a752-ea9031912c39" alt="react" width="42" height="36"/></a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="42" height="38"/> </a><a href="https://tanstack.com/query/v3" target="_blank" rel="noreferrer"> <img src="https://github.com/webmin/webmin/assets/121996224/b8260626-f426-4e90-b94b-feaa600b709c" alt="react query" width="42" height="40"/></a><a href="https://gsap.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/user-attachments/assets/cafa2bb1-650c-4de0-9161-81614b9b508f" alt="gsap" width="42" height="40"/> </a>
 
-
+</br>
+</br>
 ## 🚀New Features and Enhancements
 <ul>
   <li><strong>Rebuilt with Next.js:</strong> Transitioned from React to Next.js for improved performance, faster load times, and better SEO.</li>
@@ -17,8 +18,8 @@
   <li><strong>Enhance Database with RLS:</strong> Ensures only the server can modify the database, preventing unauthorized transactions.</li>
   <li><strong>Backend:</strong> Migrated from LeanCloud to Supabase for enhanced data management.</li>
 </ul>
-
-
+</br>
+</br>
 ## 👉Old Key Features
 <ul>
   <li><strong>Animated Landing Page:</strong> Landing page are animated using GSAP.</li>
