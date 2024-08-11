@@ -27,6 +27,7 @@ export default function Chart({ data }) {
 
   const searchParam = useSearchParams();
   const cur = searchParam.get("cur");
+  const time = searchParam.get("time");
   const { transactions, balance } = data;
   const { isPending, latestCur } = useLatestCurrency();
   const { isPending: isPending2, currency } = useCurrency();
@@ -51,7 +52,7 @@ export default function Chart({ data }) {
   );
 
   return (
-    <div>
+    <div key={[cur, time, latestCur.rates[cur]]}>
       <div className="flex flex-col justify-between md:flex-row">
         <p className="px-1 py-1 text-xl font-bold md:text-2xl">
           1 CNY = {latestCur.rates[cur]} {cur}{" "}
