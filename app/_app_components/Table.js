@@ -1,14 +1,14 @@
 "use client"
 import { useSearchParams } from "next/navigation";
 import { formatNumber, formatCurrency } from "../_lib/helpers";
-import { useScreenSize } from "/app/_components/ScreenContext";
+import { useTab } from "/app/_components/TabContext";
 import TotalAsset from "./TotalAsset";
 import Spinner from "../_components/Spinner";
 import useLatestCurrency from "../_lib/useLatestCurrency";
 
 function Table({ transactions = [] }) {
   const { isPending, latestCur } = useLatestCurrency();
-  const { setActiveTab } = useScreenSize();
+  const { setActiveTab } = useTab();
   const searchParams = useSearchParams();
 
   function handleClick(asset) {

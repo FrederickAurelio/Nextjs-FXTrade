@@ -1,14 +1,5 @@
-"use client"
-import { useScreenSize } from "/app/_components/ScreenContext";
-
 export default function DesktopPage({ children }) {
-  const { screenSize } = useScreenSize();
-  return <>
-    {screenSize > 1020 && (
-      <>
-        {children}
-      </>
-    )
-    }
-  </>
+  return <main className="grid h-[93dvh] w-full bg-zinc-100 lg:h-dvh lg:grid-cols-2 lg:divide-x-2 lg:divide-zinc-200 max-lg:hidden">
+    {children}
+  </main>
 }

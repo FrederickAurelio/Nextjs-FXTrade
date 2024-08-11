@@ -9,11 +9,22 @@ import useLatestCurrency from "../_lib/useLatestCurrency"
 import useCurrency from "../_lib/useCurrency"
 import { useSearchParams } from "next/navigation"
 import Spinner from "../_components/Spinner"
-import { useScreenSize } from "/app/_components/ScreenContext"
 import { format } from "date-fns"
+import { useEffect, useState } from "react"
 
-export default async function Chart({ data }) {
-  const { screenSize } = useScreenSize();
+export default function Chart({ data }) {
+  const [screenSize, setScreenSize] = useState(window?.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window?.innerWidth || 0);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const searchParam = useSearchParams();
   const cur = searchParam.get("cur");
   const { transactions, balance } = data;

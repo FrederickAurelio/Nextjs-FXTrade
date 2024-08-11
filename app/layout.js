@@ -1,5 +1,5 @@
 import "./globals.css";
-import { ScreenSize } from "./_components/ScreenContext";
+import { Tab } from "./_components/TabContext";
 import { Toaster } from "react-hot-toast";
 import Animation from "./_components/Animation";
 import ReactQueryProvider from "./_lib/ReactQueryProvider";
@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
       <body>
         <ReactQueryProvider>
           <Animation>
-            <ScreenSize>
+            <Tab>
               {children}
-            </ScreenSize>
+            </Tab>
           </Animation>
         </ReactQueryProvider>
         <Toaster

@@ -17,8 +17,8 @@ function Buy({ cur, latestCur, transactions, balance, isOwn, onCloseModal }) {
 
   function handleBuy() {
     if (buyQuantity === 0) return;
-    startTransition(() => {
-      const res = BuyTransactions(transaction.asset, buyQuantity);
+    startTransition(async () => {
+      const res = await BuyTransactions(transaction.asset, buyQuantity);
       onCloseModal();
       if (res.type === "success")
         toast.success("Transaction Successful! Thank You!")
