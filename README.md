@@ -5,4 +5,4 @@
 </div>
 
 ## ⚙️Technology
-<a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/user-attachments/assets/8e8787a8-5d28-454e-a0ed-7f4d7c746a45" width="60" height="40"/>
+<a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/user-attachments/assets/8e8787a8-5d28-454e-a0ed-7f4d7c746a45" width="58" height="40"/>
