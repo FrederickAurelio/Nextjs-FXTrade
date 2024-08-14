@@ -8,10 +8,8 @@ export default function useLatestCurrency() {
       fetch(`/api/latestcurrency`).then((res) =>
         res.json(),
       ),
-    refetchInterval: 60000,
-    refetchIntervalInBackground: false,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    staleTime: 60000,
+    refetchInterval: 60000
   });
 
   return { isPending, latestCur }
