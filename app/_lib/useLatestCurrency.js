@@ -9,7 +9,10 @@ export default function useLatestCurrency() {
         res.json(),
       ),
     staleTime: 60000,
-    refetchInterval: 60000
+    refetchInterval: 60000,
+    refetchIntervalInBackground: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   return { isPending, latestCur }
