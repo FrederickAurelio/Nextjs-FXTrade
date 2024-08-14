@@ -31,3 +31,12 @@
   <li><strong>Customizable Timeseries:</strong> Adjust timeseries length for detailed currency fluctuation</li>
   <li><strong>Currency Trading:</strong> Buy and sell currencies with virtual money.</li>
 </ul>
+
+## Screenshots
+![Screenshots](https://github.com/user-attachments/assets/702b5462-b67f-46fe-a029-2f9075279343)
+![Screenshot (244)](https://github.com/user-attachments/assets/1a8e8427-c2f6-40b4-a5ca-0497adb2f1c5)
+![Screenshot (245)](https://github.com/user-attachments/assets/a483c9db-0c4e-4791-a00d-81d6291ce99b)
+![Screenshot (246)](https://github.com/user-attachments/assets/54809de9-9ed0-4289-bca2-2aea1036b00f)
+
+## References
+FXTrade - React: https://github.com/FrederickAurelio/FXTrade
