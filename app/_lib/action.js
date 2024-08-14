@@ -212,7 +212,7 @@ export async function BuyTransactions(asset, assetQuantity) {
     revalidateTag("transactions");
     return { type: "success" }
   } catch (err) {
-    return { type: "error", message: err.message }
+    return { type: "error", message: `Transaction Failed: ${err.message}` }
     // throw new Error(err.message)
   }
 }
@@ -282,7 +282,7 @@ export async function SellTransactions(asset, assetQuantity) {
     revalidateTag("transactions");
     return { type: "success" }
   } catch (err) {
-    return { type: "error", message: err.message }
+    return { type: "error", message: `Transaction Failed: ${err.message}` }
     // throw new Error(err.message)
   }
 }
