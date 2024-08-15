@@ -10,9 +10,7 @@ export default function useLatestCurrency() {
       ),
     staleTime: 60000,
     refetchInterval: 60000,
-    refetchIntervalInBackground: false,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    refetchIntervalInBackground: true,
   });
 
   return { isPending, latestCur }
