@@ -32,6 +32,8 @@
   <li><strong>Currency Trading:</strong> Buy and sell currencies with virtual money.</li>
 </ul>
 
+</br>
+
 ## Screenshots
 ![Screenshots](https://github.com/user-attachments/assets/702b5462-b67f-46fe-a029-2f9075279343)
 ![Screenshot (244)](https://github.com/user-attachments/assets/1a8e8427-c2f6-40b4-a5ca-0497adb2f1c5)
